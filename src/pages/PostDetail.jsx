@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { posts } from "../data/posts";
-import Layout from "../components/Layout";
 
 function PostDetail() {
   const { id } = useParams();
@@ -16,7 +15,7 @@ function PostDetail() {
   }, [id]);
 
   if (loading) {
-    return <Layout>読み込み中...</Layout>;
+    return "読み込み中...";
   }
 
   if (!loading && !post) {
