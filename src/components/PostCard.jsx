@@ -1,8 +1,12 @@
-import React from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
 
 function PostCard({ post }) {
   return (
-    <div className="block p-4 border border-gray-300 hover:shadow-lg transition-shadow">
+    <Link
+      to={`/posts/${post.id}`}
+      className="block p-4 border border-gray-300 hover:shadow-lg transition-shadow"
+    >
       <div className="flex justify-between text-sm mb-2">
         <time className="text-gray-500">
           {new Date(post.createdAt).toLocaleDateString()}
@@ -23,7 +27,7 @@ function PostCard({ post }) {
         className="text-gray-600 line-clamp-2"
         dangerouslySetInnerHTML={{ __html: post.content }}
       />
-    </div>
+    </Link>
   );
 }
 
