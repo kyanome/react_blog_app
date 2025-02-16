@@ -6,14 +6,21 @@ import Layout from "../components/Layout";
 function PostDetail() {
   const { id } = useParams();
   const [post, setPost] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     const post = posts.find((item) => item.id === Number(id));
     setPost(post);
+    setLoading(false);
   }, [id]);
 
-  if (!post) {
-    return "Loading...";
+  if (loading) {
+    return <Layout>読み込み中...</Layout>;
+  }
+
+  if (!loading && !post) {
+    return <div>記事が見つかりません</div>;
   }
 
   return (
