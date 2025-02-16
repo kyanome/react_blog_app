@@ -4,20 +4,27 @@ import { API_BASE_URL } from "../config/constants";
 
 function Home() {
   const [posts, setPosts] = useState([]);
+  const [post, setPost] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchPosts = async () => {
-      try {
-        fetch(`${API_BASE_URL}/posts`)
-          .then((res) => res.json())
-          .then(({ posts }) => setPosts(posts))
-          .catch(console.error);
-      } catch (error) {
-        console.error("Error fetching posts:", error);
-      }
+      setLoading(true);
+      const res = await fetch(`${API_BASE_URL}/posts`);
+      const { posts } = await res.json();
+      setPosts(posts);
+      setLoading(false);
     };
     fetchPosts();
   }, []);
+
+  if (loading) {
+    return "読み込み中...";
+  }
+
+  if (!loading && !posts) {
+    return <div>記事が見つかりません</div>;
+  }
 
   return (
     <ul className="space-y-4">
