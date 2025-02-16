@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { posts } from "../data/posts";
+import { API_BASE_URL } from "../config/constants";
 
 function PostDetail() {
   const { id } = useParams();
@@ -8,10 +8,14 @@ function PostDetail() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
-    const post = posts.find((item) => item.id === Number(id));
-    setPost(post);
-    setLoading(false);
+    const fetcher = async () => {
+      setLoading(true);
+      const res = await fetch(`${API_BASE_URL}/posts/${id}`);
+      const { post } = await res.json();
+      setPost(post);
+      setLoading(false);
+    };
+    fetcher();
   }, [id]);
 
   if (loading) {
