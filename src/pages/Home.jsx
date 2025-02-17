@@ -4,7 +4,6 @@ import { API_BASE_URL } from "../config/constants";
 
 function Home() {
   const [posts, setPosts] = useState([]);
-  const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
