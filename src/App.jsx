@@ -3,6 +3,7 @@ import "./App.css";
 import Home from "./pages/Home";
 import PostDetail from "./pages/PostDetail";
 import DefaultLayout from "./layout/DefaultLayout";
+import Contact from "./pages/Contact";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="posts/:id" element={<PostDetail />}></Route>
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </DefaultLayout>
   );
