@@ -1,27 +1,13 @@
-import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { API_BASE_URL } from "../config/constants";
+import usePost from "../features/blog/hooks/usePost";
 
 function PostDetail() {
   const { id } = useParams();
-  const [post, setPost] = useState(null);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const fetcher = async () => {
-      setLoading(true);
-      const res = await fetch(`${API_BASE_URL}/posts/${id}`);
-      const { post } = await res.json();
-      setPost(post);
-      setLoading(false);
-    };
-    fetcher();
-  }, [id]);
+  const { post, loading } = usePost(id);
 
   if (loading) {
     return "読み込み中...";
   }
-
   if (!loading && !post) {
     return <div>記事が見つかりません</div>;
   }
