@@ -22,9 +22,8 @@ function ContactForm() {
             type="text"
             id={FORM_FIELDS.NAME}
             placeholder="お名前を入力してください"
-            register={register}
-            rules={formValidations[FORM_FIELDS.NAME]}
             error={errors[FORM_FIELDS.NAME]}
+            {...register(FORM_FIELDS.NAME, formValidations[FORM_FIELDS.NAME])}
           />
 
           <Input
@@ -32,18 +31,19 @@ function ContactForm() {
             type="email"
             id={FORM_FIELDS.EMAIL}
             placeholder="メールアドレスを入力してください"
-            register={register}
-            rules={formValidations[FORM_FIELDS.EMAIL]}
             error={errors[FORM_FIELDS.EMAIL]}
+            {...register(FORM_FIELDS.EMAIL, formValidations[FORM_FIELDS.EMAIL])}
           />
 
           <TextArea
             label={FORM_FIELDS.MESSAGE}
             id={FORM_FIELDS.MESSAGE}
             placeholder="本文を入力してください"
-            register={register}
-            rules={formValidations[FORM_FIELDS.MESSAGE]}
             error={errors[FORM_FIELDS.MESSAGE]}
+            {...register(
+              FORM_FIELDS.MESSAGE,
+              formValidations[FORM_FIELDS.MESSAGE]
+            )}
           />
         </div>
 
